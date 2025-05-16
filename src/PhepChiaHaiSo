@@ -1,0 +1,56 @@
+import javax.swing.*;
+import java.awt.event.*;
+
+public class PhepChiaHaiSo {
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Phép chia hai số");
+        frame.setSize(350, 220);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLayout(null);
+
+        JLabel lblSoThuNhat = new JLabel("Số thứ nhất:");
+        lblSoThuNhat.setBounds(30, 30, 100, 25);
+        frame.add(lblSoThuNhat);
+
+        JTextField txtSoThuNhat = new JTextField();
+        txtSoThuNhat.setBounds(140, 30, 150, 25);
+        frame.add(txtSoThuNhat);
+
+        JLabel lblSoThuHai = new JLabel("Số thứ hai:");
+        lblSoThuHai.setBounds(30, 70, 100, 25);
+        frame.add(lblSoThuHai);
+
+        JTextField txtSoThuHai = new JTextField();
+        txtSoThuHai.setBounds(140, 70, 150, 25);
+        frame.add(txtSoThuHai);
+
+        JButton btnTinh = new JButton("Chia");
+        btnTinh.setBounds(110, 110, 100, 30);
+        frame.add(btnTinh);
+
+        JLabel lblKetQua = new JLabel("Kết quả: ");
+        lblKetQua.setBounds(30, 160, 300, 25);
+        frame.add(lblKetQua);
+
+        btnTinh.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    double soThuNhat = Double.parseDouble(txtSoThuNhat.getText());
+                    double soThuHai = Double.parseDouble(txtSoThuHai.getText());
+
+                    if (soThuHai == 0) {
+                        JOptionPane.showMessageDialog(frame, "Không thể chia cho 0!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+
+                    double ketQua = soThuNhat / soThuHai;
+                    lblKetQua.setText("Kết quả: " + ketQua);
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(frame, "Vui lòng nhập số hợp lệ!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+
+        frame.setVisible(true);
+    }
+}
